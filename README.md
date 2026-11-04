@@ -1,4 +1,4 @@
-# Xcache
+# XCache
 **XCache** 是一套面向 MLA+DSA 注意力架构的超低比特 KV Cache 推理系统，提出了 **2-bit KV Cache 量化与热页衰退（Hot-page Decay）机制**，旨在突破传统低比特 KV Cache 量化在模型精度、推理效率及系统兼容性方面的限制，实现兼具高精度、高吞吐与生产级可用性的超低比特推理。
 
 在基于 **GLM-5.2-FP8** 的初步评测中，XCache 展现出了接近无损的量化精度。尤其是在对模型推理能力与长程任务执行要求较高的 Coding Agent 场景中，XCache 在 **SWE-bench Verified 的 500 道测试任务中，仅比 BF16 基线少解决 1 道问题**，表明即使将 KV Cache 压缩至 2-bit，仍能够较好地保留模型复杂推理与代码生成能力。此外，针对现有多种低比特 KV Cache 量化方案（包括当前 SOTA 方法）普遍存在的**生成长度膨胀（Generation Length Inflation）**问题，XCache 在初步实验中未观察到类似现象，体现出其精度保持机制在推理行为稳定性方面的优势。
