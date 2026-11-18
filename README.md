@@ -47,6 +47,8 @@
 | Terminal-Bench 2.1 (Terminus-2) | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | HLE | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 
+注释：新版OSCAR代码仓库采用https://github.com/FutureMLS-Lab/OSCAR/tree/sglang-rebase，可让ai照此复现，已有glm5.3的测试流程，应该也是fp8的
+
 **主实验进度：0 / 72**
 
 ### 3. GLM-5.3（FP8）扩展实验 TODO
@@ -66,6 +68,7 @@
 **扩展实验进度：0 / 72**
 
 ### 实验配置说明
+
 1.SWE-bench Verified
 
 当前使用 SWE-bench Verified 的完整 test 集，共 500 题。Agent 生成补丁，再由官方 SWE-bench harness 执行测试评分。
@@ -96,6 +99,7 @@ Agent 与评分约束：
 2.DeepSWE
 
 3.GPQA198
+
 关键配置如下：
 | 项目 | 配置 |
 | GPQA 数量 | 全量 198 题，NUM_EXAMPLES 不设置 |
