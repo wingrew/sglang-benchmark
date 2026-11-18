@@ -39,9 +39,10 @@
 
 | Benchmark | BF16 | FP8 | OSCAR | RAQ-MLA |
 |---|---|---|---|---|
-| SWE-bench Verified (500) | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
+| SWE-bench Verified (500) | 76.4% 77.4% ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | DeepSWE | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
-| GPQA | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
+| GPQA198(32k) | 83.3% 80.3% 82.3% | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
+| GPQA198(100k) | 91.4% 90.4% 91.4% | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | AIME 2026 | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | Terminal-Bench 2.1 (Terminus-2) | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | HLE | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
@@ -56,12 +57,58 @@
 |---|---|---|---|---|
 | SWE-bench Verified (500) | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | DeepSWE | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
-| GPQA | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
+| GPQA198(32k) | 85.7% ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
+| GPQA198(100k) | 90.9% ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | AIME 2026 | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | Terminal-Bench 2.1 (Terminus-2) | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | HLE | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 
 **扩展实验进度：0 / 72**
+
+### 实验配置说明
+1.SWE-bench Verified
+
+当前使用 SWE-bench Verified 的完整 test 集，共 500 题。Agent 生成补丁，再由官方 SWE-bench harness 执行测试评分。
+| 项目 | 实际配置 |
+|---|---|
+| 推理框架 | SGLang 0.5.16|
+| PyTorch / Transformers | 2.11.0+cu129 / 5.12.1 |
+| Agent | mini-swe-agent==2.4.6 |
+| 评分框架 | swebench==5.0.2 |
+| API 客户端 | litellm==1.80.0，openai==2.6.1 |
+| 数据加载 | datasets==5.0.0 |
+
+| 参数 | BF16 |
+|---|---|---|
+| 权重精度 | FP8 | 
+| KV cache | BF16 | 
+| 服务镜像 | lmsysorg/sglang:v0.5.16-cu129 | 
+| 上下文窗口，含输入与输出 | 409600 tokens | 
+| 单轮最大输出 | 32768 tokens | 
+| 采样 | temperature=1, top_p=1 | 
+Agent 与评分约束：
+
+- 每题最多 250 步；单次模型请求超时 7200 秒，单条 shell 命令超时 120 秒。
+- 每题使用独立 SWE-bench Docker 环境，在 /testbed 中修改代码、测试并提交补丁。
+- 评分并发 4，每题测试超时 1800 秒；生成结束后停止模型、释放 GPU，再运行 CPU 评分。
+- 最终分数为 resolved instances ÷ 500，另行统计空补丁和评测错误。
+
+2.DeepSWE
+
+3.GPQA198
+关键配置如下：
+| 项目 | 配置 |
+| GPQA 数量 | 全量 198 题，NUM_EXAMPLES 不设置 |
+| 最大生成长度 | 跑一遍32k tokens，再跑一遍100k tokens|
+| Temperature | 1.0 |
+| Top-p | 0.95 |
+
+4.AIME 2026
+
+5.Terminal-Bench2.1
+
+6.HLE
+
 
 ### 4. 核心评测指标
 
