@@ -80,11 +80,6 @@
 | 评分框架 | swebench==5.0.2 |
 | API 客户端 | litellm==1.80.0，openai==2.6.1 |
 | 数据加载 | datasets==5.0.0 |
-
-| 参数 | BF16 |
-|---|---|---|
-| 权重精度 | FP8 | 
-| KV cache | BF16 | 
 | 服务镜像 | lmsysorg/sglang:v0.5.16-cu129 | 
 | 上下文窗口，含输入与输出 | 409600 tokens | 
 | 单轮最大输出 | 32768 tokens | 
