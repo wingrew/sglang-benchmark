@@ -83,7 +83,7 @@
 | 服务镜像 | lmsysorg/sglang:v0.5.16-cu129 | 
 | 上下文窗口，含输入与输出 | 409600 tokens | 
 | 单轮最大输出 | 32768 tokens | 
-| 采样 | temperature=1, top_p=1 | 
+| 采样 | temperature=1, top_p=1，top_k使用sglang默认值| 
 Agent 与评分约束：
 
 - 每题最多 250 步；单次模型请求超时 7200 秒，单条 shell 命令超时 120 秒。
