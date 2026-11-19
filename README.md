@@ -21,7 +21,7 @@
 | 扩展测试模型（可选） | GLM-5.3（FP8） |
 | GPU | 8 × NVIDIA H200 |
 | 推理框架 | SGLang |
-| Benchmark | SWE-bench Verified、DeepSWE、GPQA、AIME 2026、Terminal-Bench 2.1、HLE |
+| Benchmark | SWE-bench Verified、DeepSWE、GPQA、AIME 2026、Terminal-Bench 2.1、longbench_v2 |
 | 对比配置 | BF16、FP8、OSCAR、RAQ-MLA |
 | 随机种子 | **全实验共用 3 个固定 Seed：42、123、2026** |
 | 主实验规模 | 6 × 4 × 3 = **72 次评测运行** |
@@ -45,7 +45,7 @@
 | GPQA198(100k) | 91.4% 90.4% 91.4% | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | AIME 2026 | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | Terminal-Bench 2.1 (Terminus-2) | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
-| HLE | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
+| longbench_v2 | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 
 注释：新版OSCAR代码仓库采用https://github.com/FutureMLS-Lab/OSCAR/tree/sglang-rebase，可让ai照此复现，已有glm5.3的测试流程，应该也是fp8的
 
@@ -63,7 +63,7 @@
 | GPQA198(100k) | 90.9% ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | AIME 2026 | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 | Terminal-Bench 2.1 (Terminus-2) | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
-| HLE | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
+| longbench_v2 | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ | ☐ ☐ ☐ |
 
 **扩展实验进度：0 / 72**
 
@@ -121,7 +121,7 @@ Agent 与评分约束：
 
 待补充
 
-6.HLE
+6.longbench_v2
 
 待补充
 
@@ -155,7 +155,7 @@ Agent 与评分约束：
 | 对齐 XCache 的评测配置 | ☐ |
 | 构建 SWE-bench Verified 评测环境 | ☐ |
 | 构建 DeepSWE 评测环境 | ☐ |
-| 构建 GPQA、AIME 2026 和 HLE 评测环境 | ☐ |
+| 构建 GPQA、AIME 2026 和 longbench_v2 评测环境 | ☐ |
 | 构建 Terminal-Bench 2.1（Terminus-2）环境 | ☐ |
 | 固定并统一使用三个 Seed：42、123、2026 | ☐ |
 | 实现 Accuracy、Generated Tokens、Execution Time 自动统计 | ☐ |
