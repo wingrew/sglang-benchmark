@@ -97,8 +97,14 @@ Agent 与评分约束：
 - 最终分数为 resolved instances ÷ 500，另行统计空补丁和评测错误。
 
 2.DeepSWE
+已建立 Datacurve DeepSWE v1.1 评测环境。
 
-待补充
+- 113 题已下载，使用独立 Python 3.12、Pier 0.3.1、mini-swe-agent 2.4.6。
+- 单轮最大32K 输出。
+
+- Agent 解题上限：3 小时/题。
+- 评分上限：30 分钟/题。
+- mini-swe-agent 默认 step_limit: 250轮
 
 3.GPQA198
 
