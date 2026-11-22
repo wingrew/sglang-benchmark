@@ -113,7 +113,16 @@ Agent 与评分约束：
 
 4.AIME 2026
 
-待补充
+此前 AIME 2026 的 160K 测试使用以下配置，XCache 跑了 10 轮，BF16 跑了 1 轮对照。
+
+| 项目 | 配置 |
+|---|---|
+| 服务环境 | glm52-oscar；Python 3.11.15、PyTorch 2.11.0+cu129、Transformers 5.12.1 |
+| 并行配置 | 8 卡 TP，4 并发 |
+| 上下文窗口 | 524288 tokens |
+| 单题生成上限 | 163840 tokens，即 160 × 1024 |
+| 采样参数 | temperature=1、top_p=1；未显式传入 top_k |
+| 请求超时 | 单次 API 请求 4 小时 |
 
 5.Terminal-Bench2.1
 
