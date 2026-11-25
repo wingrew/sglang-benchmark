@@ -126,11 +126,37 @@ Agent 与评分约束：
 
 5.Terminal-Bench2.1
 
-待补充
+| 配置项 | Terminal-Bench 2.1 | 
+|---|---|
+| 数据集 | 官方2.1，Hub revision 6，89题 | 
+| 环境 | Python 3.12、Harbor 0.25.0、Docker | 
+| Agent／提示词 | Terminus-2，默认JSON终端交互与上下文摘要 | 
+| 并发 | 4 |
+| 上下文 | Agent输入声明409,600 tokens，服务端需匹配 | 
+| 输入预算 | 由Terminus-2管理 | 
+| 单次生成上限 | 32,768 tokens | 
+| temperature／top_p | 1／1 |
+| 超时 | 沿用各题官方配置，Agent为600–12,000秒，多数900秒 | 
+| 评分 | 每题执行官方Docker verifier，汇总reward | 
+
 
 6.longbench_v2
 
-待补充
+| 配置项 | LongBench v2默认配置 |
+|---|---|
+| 数据集  | 官方503道四选一题，覆盖6类任务 |
+| 环境 | Python 3.12、OpenAI 2.6.1、tokenizers 0.22.1 |
+| Agent／提示词 |官方direct提示词，单次回答 |
+| 并发 | 4 |
+| 每题采样 | 1次 |
+| 上下文 | 总窗口524,288 tokens |
+| 输入预算 | 491,008 tokens |
+| 单次生成上限 | 32,768 tokens |
+| temperature／top_p | 1／1 |
+| 请求seed | 42 |
+| 超时 | 每次请求14,400秒 |
+| 评分 | 官方答案提取，计算准确率及各分组成绩 |
+LongBench默认512K配置下，50/503题需要截断：保留提示词首尾、删除中间部分。因此后续成绩需注明截断策略。
 
 ### 4. 核心评测指标
 
